@@ -1,0 +1,29 @@
+{
+  "bin": {
+    "cli": "./lib/index.js"
+  },
+  "name": "tag",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "pfft-preset-cli": "^0.18.3"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "lodash": "^4.17.4"
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "pfft-partial-ava/config/setup"
+    ]
+  },
+  "scripts": {
+    "build": "cli build",
+    "clean": "cli clean",
+    "coverage": "cli coverage",
+    "start": "cli start",
+    "test": "cli test"
+  }
+}
