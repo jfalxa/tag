@@ -1,17 +1,18 @@
 {
   "bin": {
-    "cli": "./lib/index.js"
+    "tag": "./lib/index.js"
   },
   "name": "tag",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "license": "MIT",
   "devDependencies": {
     "pfft-preset-cli": "^0.18.3"
   },
   "dependencies": {
-    "commander": "^2.9.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "lowdb": "^0.14.0",
+    "pegjs": "^0.10.0"
   },
   "ava": {
     "babel": "inherit",

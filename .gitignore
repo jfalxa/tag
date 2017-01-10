@@ -11,3 +11,6 @@ yarn.lock
 
 # build results
 lib
+
+# other
+db.json
