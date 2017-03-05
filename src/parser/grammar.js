@@ -1,4 +1,4 @@
-import { AND, OR, NOT } from 'src/constants/operators';
+import { AND, OR, NOT } from '../constants/operators';
 
 
 export default

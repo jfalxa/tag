@@ -1,4 +1,4 @@
-import { NOT } from 'src/constants/operators';
+import { NOT } from '../constants/operators';
 
 
 export function complement( query )
