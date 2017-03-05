@@ -1,7 +1,7 @@
-import isLeaf                       from './isLeaf';
-import eliminateNegations           from './eliminateNegations';
-import * as operations              from './operations';
-import { complement, isComplement } from './complement';
+import isLeaf          from '../utils/isLeaf';
+import * as operations from './operations';
+
+import { complement, eliminateNegations, isComplement } from '../utils/complement';
 
 
 export default function execute( query, data )

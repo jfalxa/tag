@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { and, or } from 'src/search/operations';
+import { and, or } from 'src/query/operations';
 
 
 const A = [1, 2, 3, 4];

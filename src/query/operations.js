@@ -2,7 +2,7 @@ import _union        from 'lodash/union';
 import _difference   from 'lodash/difference';
 import _intersection from 'lodash/intersection';
 
-import { complement, isComplement } from './complement';
+import { complement, isComplement } from '../utils/complement';
 
 
 export function and( left, right )

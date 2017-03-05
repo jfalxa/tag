@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import createParser from 'src/parser';
-import toBinaryTree from 'src/search/toBinaryTree';
+import toBinaryTree from 'src/utils/toBinaryTree';
 
 
 const parse = createParser();

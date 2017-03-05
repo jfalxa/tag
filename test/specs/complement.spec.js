@@ -1,6 +1,7 @@
 import test from 'ava';
 
-import eliminateNegations from 'src/search/eliminateNegations';
+import { eliminateNegations } from 'src/utils/complement';
+
 
 // NOT NOT NOT NOT NOT NOT NOTNOTNTONTONTOTNTOTNOTASCSLSAMAKFMKAOA
 
