@@ -1,13 +1,12 @@
 import test from 'ava';
 
-import execute      from 'src/query/execute';
 import createParser from 'src/parser';
+import execute      from 'src/query/execute';
 import toBinaryTree from 'src/utils/toBinaryTree';
 
 
 const SETS =
 {
-    '*' : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     'A' : [0, 1, 2, 3, 4],
     'B' : [3, 4, 5, 6, 7],
     'C' : [6, 7, 8, 9],
@@ -22,7 +21,7 @@ const search = query => execute( toBinaryTree( parse( query ) ), SETS );
 
 
 
-test( 'search: A and B', t =>
+test( 'execute: A and B', t =>
 {
     const query  = 'A and B';
     const result = [3, 4];
@@ -31,7 +30,7 @@ test( 'search: A and B', t =>
 } );
 
 
-test( 'search: A, B or C', t =>
+test( 'execute: A, B or C', t =>
 {
     const query  = 'A, B or C';
     const result = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -40,7 +39,7 @@ test( 'search: A, B or C', t =>
 } );
 
 
-test( 'search: A and not D', t =>
+test( 'execute: A and not D', t =>
 {
     const query  = 'A and not D';
     const result = [1, 3];
@@ -49,7 +48,7 @@ test( 'search: A and not D', t =>
 } );
 
 
-test( 'search: A and not (D or F)', t =>
+test( 'execute: A and not (D or F)', t =>
 {
     const query  = 'A and not (D or F)';
     const result = [1];
@@ -58,7 +57,7 @@ test( 'search: A and not (D or F)', t =>
 } );
 
 
-test( 'search: A or not B', t =>
+test( 'execute: A or not B', t =>
 {
     const query  = 'A or not B';
     const result = ['not', [5, 6, 7]];
@@ -67,7 +66,7 @@ test( 'search: A or not B', t =>
 } );
 
 
-test( 'search: A or not (B, C and not E)', t =>
+test( 'execute: A or not (B, C and not E)', t =>
 {
     const query  = 'A or not (B, C and not E)';
     const result = ['not', [6]];
@@ -76,7 +75,7 @@ test( 'search: A or not (B, C and not E)', t =>
 } );
 
 
-test( 'search: A or not (B, C and not E)', t =>
+test( 'execute: A or not (B, C and not E)', t =>
 {
     const query  = 'A or not (B, C and not E)';
     const result = ['not', [6]];
@@ -85,7 +84,7 @@ test( 'search: A or not (B, C and not E)', t =>
 } );
 
 
-test( 'search: A or not (B, (not C or D) or (not E or F))', t =>
+test( 'execute: A or not (B, (not C or D) or (not E or F))', t =>
 {
     // without eliminateNegations this one could generate a double negation
     const query  = 'A or not (B, (not C or D) or (not E or F))';

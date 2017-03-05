@@ -1,14 +1,18 @@
+import _uniq    from 'lodash/uniq';
 import _flatMap from 'lodash/flatMap';
 
 import isLeaf from './isLeaf';
 
 
-export default function getQueryVector( [_, ...operands] )
+function toQuerySpace( operand )
 {
-    return _flatMap( operands, operand =>
-    (
-        isLeaf( operand )
-            ? operand
-            : getQueryVector( operand )
-    ) ); 
+    return isLeaf( operand )
+        ? operand
+        : getQuerySpace( operand );
+}
+
+
+export default function getQuerySpace( [_, ...operands] )
+{
+    return _uniq( _flatMap( operands, toQuerySpace ) );
 }

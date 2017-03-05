@@ -58,3 +58,6 @@ test( 'parser: (A and B) or (C and not (D, not E or F))', t =>
 
     t.deepEqual( parse( query ), result );
 } );
+
+
+test.todo( 'parser: Syntax error in query' );

@@ -14,3 +14,30 @@ test( 'getQuerySpace: A and B', t =>
 
     t.deepEqual( getQuerySpace( query ), results );
 } );
+
+
+test( 'getQuerySpace: A, B and C', t =>
+{
+    const query   = parse( 'A, B and C' );
+    const results = ['A', 'B', 'C'];
+
+    t.deepEqual( getQuerySpace( query ), results );
+} );
+
+
+test( 'getQuerySpace: A or not B', t =>
+{
+    const query   = parse( 'A or not B' );
+    const results = ['A', 'B'];
+
+    t.deepEqual( getQuerySpace( query ), results );
+} );
+
+
+test( 'getQuerySpace: A, (B and not B) and (C or B)', t =>
+{
+    const query   = parse( 'A, (B and not B) and (C or B)' );
+    const results = ['A', 'B', 'C'];
+
+    t.deepEqual( getQuerySpace( query ), results );
+} );
