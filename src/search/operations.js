@@ -2,7 +2,7 @@ import _union        from 'lodash/union';
 import _difference   from 'lodash/difference';
 import _intersection from 'lodash/intersection';
 
-import { isComplement } from './complement';
+import { complement, isComplement } from './complement';
 
 
 export function and( left, right )
@@ -22,7 +22,7 @@ export function and( left, right )
     // NOT left AND NOT right
     else if ( isComplement( left ) && isComplement( right ) )
     {
-        throw 'Not implemented';
+        return complement( or( left[1], right[1] ) );
     }
 
     // left AND right
@@ -38,19 +38,19 @@ export function or( left, right )
     // left OR NOT right
     if ( !isComplement( left ) && isComplement( right ) )
     {
-        throw 'Not implemented';
+        return complement( and( complement( left ), right[1] ) );
     }
 
     // NOT left OR right
     else if ( isComplement( left ) && !isComplement( right ) )
     {
-        throw 'Not implemented';
+        return complement( and( left[1], complement( right ) ) );
     }
 
     // NOT left OR NOT right
     else if ( isComplement( left ) && isComplement( right ) )
     {
-        throw 'Not implemented';
+        return complement( and( left[1], right[1] ) );
     }
 
     // left OR right

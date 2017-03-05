@@ -1,9 +1,11 @@
-import test   from 'ava';
+import test from 'ava';
+
 import search from 'src/search';
 
 
 const SETS =
 {
+    '*' : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     'A' : [0, 1, 2, 3, 4],
     'B' : [3, 4, 5, 6, 7],
     'C' : [6, 7, 8, 9],
@@ -44,6 +46,15 @@ test( 'search: "A and not (D or F)"', t =>
 {
     const query  = ['and', 'A', ['not', ['or', 'D', 'F']]];
     const result = [1];
+
+    t.deepEqual( search( query, SETS ), result );
+} );
+
+
+test( 'search: "A or not B"', t =>
+{
+    const query  = ['or', 'A', ['not', 'B']];
+    const result = ['not', [5, 6, 7]];
 
     t.deepEqual( search( query, SETS ), result );
 } );
