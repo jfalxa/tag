@@ -25,7 +25,7 @@ operand
     / not _ opd:operand { return ['not', opd] }
 
 group
-    = "\[" _ opn:operation _ "\]" { return opn }
+    = "\(" _ opn:operation _ "\)" { return opn }
 
 leftoperand
     = left:operand _ "," _ right:leftoperand { return [left].concat( right ) }
