@@ -1,3 +1,6 @@
+import { AND, OR, NOT } from 'src/constants/operators';
+
+
 export default
 `
 start
@@ -13,16 +16,16 @@ set
     = $[A-Z\-]+
 
 operator
-    = "and"
-    / "or"
+    = "${ AND }"
+    / "${ OR }"
 
 not
-    = "not"
+    = "${ NOT }"
 
 operand
     = set
     / group
-    / not _ opd:operand { return ['not', opd] }
+    / not _ opd:operand { return ['${ NOT }', opd] }
 
 group
     = "\(" _ opn:operation _ "\)" { return opn }

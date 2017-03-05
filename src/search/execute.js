@@ -13,10 +13,11 @@ export default function execute( query, data )
     }
     else if ( isComplement( query ) )
     {
-        // execute a complement's base set to actually grab its data
+        // execute any query that is inside a NOT node
         return complement( execute( query[1], data ) );
     }
 
+    // decompose the binary tree of this query
     const [operator, left, right] = query;
 
     // recursively call execute in order to get results from nested queries
