@@ -1,7 +1,4 @@
-import peg from 'pegjs';
-
-
-const GRAMMAR =
+export default
 `
 start
     = operation
@@ -38,12 +35,3 @@ operation
     = left:leftoperand __ op:operator __ right:operand _ { return [op].concat( left, [right] ) }
     / operand
 `;
-
-
-const parser = peg.generate( GRAMMAR );
-
-
-export default function parse( query )
-{
-    return parser.parse( query );
-}

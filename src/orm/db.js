@@ -14,8 +14,9 @@ const defaults =
     doc_groups : {}
 };
 
-const db   = low( '/home/falxa/workspace/tag/db.json' );
-let data   = db.defaults( defaults ).value();
+
+const db = low( '/home/falxa/workspace/tag/db.json' );
+let data = db.defaults( defaults ).value();
 
 
 function addGroup( i, group )
@@ -37,7 +38,6 @@ function addDoc( i )
         maybe() && addGroup( i, group );
     }
 }
-
 
 
 export default
