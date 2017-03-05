@@ -1,4 +1,5 @@
 import isLeaf                       from './isLeaf';
+import eliminateNegations           from './eliminateNegations';
 import * as operations              from './operations';
 import { complement, isComplement } from './complement';
 
@@ -23,5 +24,8 @@ export default function execute( query, data )
     const rightResult = execute( right, data );
 
     // combine the results from both children using the query's operator
-    return operations[operator]( leftResult, rightResult );
+    const result = operations[operator]( leftResult, rightResult );
+
+    // and remove any double negation
+    return eliminateNegations( result );
 }

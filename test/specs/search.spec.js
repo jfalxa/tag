@@ -80,3 +80,13 @@ test( 'search: "A or not (B, C and not E)"', t =>
 
     t.deepEqual( search( query, SETS ), result );
 } );
+
+
+test( 'search: "A or not (B, (not C or D) or (not E or F))"', t =>
+{
+    // without eliminateNegations this one could generate a double negation
+    const query  = parse( 'A or not (B, (not C or D) or (not E or F))' );
+    const result = [0, 1, 2, 3, 4, 9];
+
+    t.deepEqual( search( query, SETS ), result );
+} );
