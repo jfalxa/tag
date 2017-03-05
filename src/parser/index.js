@@ -1,7 +1,10 @@
-import parser from './parser';
+import peg from 'pegjs';
+
+import grammar from './grammar';
 
 
-export default function parse( query )
+export default function createParser()
 {
-    return parser.parse( query );
+    const parser = peg.generate( grammar );
+    return ( query => parser.parse( query ) );
 }
