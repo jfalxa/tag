@@ -4,5 +4,8 @@ import toBinaryTree from './toBinaryTree';
 
 export default function search( query, data )
 {
-    return execute( toBinaryTree( query ), data );
+    const queryTree = toBinaryTree( query );
+    const results   = execute( queryTree, data );
+
+    return results;
 }
