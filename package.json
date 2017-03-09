@@ -12,6 +12,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "lowdb": "^0.14.0",
+    "node-fetch": "^1.6.3",
     "pegjs": "^0.10.0"
   },
   "ava": {

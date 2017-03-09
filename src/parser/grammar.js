@@ -12,9 +12,6 @@ _ "optional whitespace"
 __ "mandatory whitespace"
     = [ ]+
 
-set
-    = $[A-Z\-]+
-
 operator
     = "${ AND }"
     / "${ OR }"
@@ -22,10 +19,24 @@ operator
 not
     = "${ NOT }"
 
+word
+    = $[a-zA-Z0-9\-]+
+
+user
+    = "@" word
+
+hash
+    = "#" word
+
+set
+    = $ word
+    / $ user
+    / $ hash
+
 operand
-    = set
+    = not _ opd:operand { return ['${ NOT }', opd] }
+    / set
     / group
-    / not _ opd:operand { return ['${ NOT }', opd] }
 
 group
     = "\(" _ opn:operation _ "\)" { return opn }
