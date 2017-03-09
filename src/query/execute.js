@@ -9,7 +9,7 @@ export default function execute( query, data )
     if ( isLeaf( query ) )
     {
         // once we reach leaves, we can actually feed data to the algorithm
-        return data[query];
+        return data[query] || [];
     }
     else if ( isComplement( query ) )
     {
