@@ -12,7 +12,12 @@ function toQuerySpace( operand )
 }
 
 
-export default function getQuerySpace( [_, ...operands] )
+export default function getQuerySpace( query )
 {
-    return _uniq( _flatMap( operands, toQuerySpace ) );
+    if ( typeof query === 'string' )
+    {
+        return [query];
+    }
+
+    return _uniq( _flatMap( query.slice( 1 ), toQuerySpace ) );
 }

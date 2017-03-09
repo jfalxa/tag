@@ -7,6 +7,15 @@ import getQuerySpace from 'src/utils/getQuerySpace';
 const parse = createParser();
 
 
+test( 'getQuerySpace: HiThere', t =>
+{
+    const query   = parse( 'Hi' );
+    const results = ['Hi'];
+
+    t.deepEqual( getQuerySpace( query ), results );
+} );
+
+
 test( 'getQuerySpace: A and B', t =>
 {
     const query   = parse( 'A and B' );

@@ -21,6 +21,24 @@ const search = query => execute( toBinaryTree( parse( query ) ), SETS );
 
 
 
+test( 'execute: A', t =>
+{
+    const query  = 'A';
+    const result = [0, 1, 2, 3, 4];
+
+    t.deepEqual( search( query ), result );
+} );
+
+
+test( 'execute: not A', t =>
+{
+    const query  = 'not A';
+    const result = ['not', [0, 1, 2, 3, 4]];
+
+    t.deepEqual( search( query ), result );
+} );
+
+
 test( 'execute: A and B', t =>
 {
     const query  = 'A and B';
