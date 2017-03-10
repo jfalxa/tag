@@ -60,6 +60,52 @@ test( 'parser: (A and B) or (C and not (D, not E or F))', t =>
 } );
 
 
+test( 'parser: A and B and C', t =>
+{
+    const query  = 'A and B and C';
+    const result = ['and', 'A', ['and', 'B', 'C']];
+
+    t.deepEqual( parse( query ), result );
+} );
+
+
+test( 'parser: A and B or C', t =>
+{
+    const query  = 'A and B or C';
+    const result = ['or', ['and', 'A', 'B'], 'C'];
+
+    t.deepEqual( parse( query ), result );
+} );
+
+
+test( 'parser: A or B and C', t =>
+{
+    const query  = 'A or B and C';
+    const result = ['or', 'A', ['and', 'B', 'C']];
+
+    t.deepEqual( parse( query ), result );
+} );
+
+
+test( 'parser: A or B and C and D or E', t =>
+{
+    const query  = 'A or B and C and D or E';
+    const result = ['or', 'A', ['or', ['and', 'B', ['and', 'C', 'D']], 'E']];
+
+    t.deepEqual( parse( query ), result );
+} );
+
+
+test( 'parser: A, B or C, D and E or F', t =>
+{
+    const query  = 'A, B or C, D and E or F';
+    const result = ['or', 'A', 'B', ['or', ['and', 'C', 'D', 'E'], 'F']];
+
+    t.deepEqual( parse( query ), result );
+} );
+
+
+
 test( 'parser: longSet and otherSet', t =>
 {
     const query  = 'longSet and otherSet';

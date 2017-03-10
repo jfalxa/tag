@@ -4,7 +4,7 @@ import { AND, OR, NOT } from '../constants/operators';
 export default
 `
 start
-    = operation
+    = expression
 
 _ "optional whitespace"
     = [ ]*
@@ -12,9 +12,11 @@ _ "optional whitespace"
 __ "mandatory whitespace"
     = [ ]+
 
-operator
+and
     = "${ AND }"
-    / "${ OR }"
+
+or
+    = "${ OR }"
 
 not
     = "${ NOT }"
@@ -33,19 +35,26 @@ set
     / $ user
     / $ hash
 
-operand
-    = not _ opd:operand { return ['${ NOT }', opd] }
+expression
+    = union
+
+union
+    = left:leftprimary __ or __ right:union { return ['${ OR }'].concat( left, [right] ) }
+    / left:intersection __ or __ right:union { return ['${ OR }', left, right] }
+    / intersection
+
+intersection
+    = left:leftprimary __ and __ right:intersection { return ['${ AND }'].concat( left, [right] ) }
+    / left:primary __ and __ right:intersection { return ['${ AND }', left, right] }
+    / primary
+
+leftprimary
+    = left:primary _ "," _ right:leftprimary { return [left].concat( right ) }
+    / prm:primary { return [prm] }
+
+primary
+    = "\(" _ exp:expression _ "\)" { return exp }
+    / not _ opd:primary { return ['${ NOT }', opd] }
     / set
-    / group
 
-group
-    = "\(" _ opn:operation _ "\)" { return opn }
-
-leftoperand
-    = left:operand _ "," _ right:leftoperand { return [left].concat( right ) }
-    / opd:operand { return [opd] }
-
-operation
-    = left:leftoperand __ op:operator __ right:operand _ { return [op].concat( left, [right] ) }
-    / operand
 `;
