@@ -1,8 +1,5 @@
 {
-  "bin": {
-    "tag": "./lib/index.js"
-  },
-  "name": "tag",
+  "name": "tag-query",
   "version": "1.0.0",
   "main": "./lib/index.js",
   "license": "MIT",
