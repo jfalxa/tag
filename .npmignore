@@ -6,5 +6,6 @@ test
 yarn.lock
 yarn-error.log
 .yarnclean
+db.json
 node_modules
 

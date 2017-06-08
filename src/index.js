@@ -17,8 +17,11 @@ export default function runQuery( humanQuery, loadQuerySpace )
     const querySpace     = getQuerySpace( queryTree );
     const querySpaceData = loadQuerySpace( querySpace );
 
-    // execute the query on the loaded data
-    const results = executeQuery( queryTree, querySpaceData );
+    if ( querySpace.then )
+    {
+        return querySpace.then( querySpaceData => executeQuery( queryTree, querySpaceData ) )
+    }
 
-    return results;
+    // execute the query on the loaded data
+    return executeQuery( queryTree, querySpaceData );
 }
